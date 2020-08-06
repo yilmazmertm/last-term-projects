@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="http://server.soap.yilmazmertm.com/" name="CountryServiceImplService"
+             xmlns:wsam="http://www.w3.org/1999/xhtml">
+<types>
+<xsd:schema>
+    <xsd:import namespace="http://server.soap.yilmazmertm.com/"
+                schemaLocation="http://localhost:8888/ws/country?xsd=1"></xsd:import>
+</xsd:schema>
+</types>
+<message name="findByName">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="findByNameResponse">
+<part name="return" type="tns:country"></part>
+</message>
+<portType name="CountryService">
+<operation name="findByName">
+    <input wsam:Action="http://server.soap.yilmazmertm.com/CountryService/findByNameRequest"
+           message="tns:findByName"></input>
+    <output wsam:Action="http://server.soap.yilmazmertm.com/CountryService/findByNameResponse"
+            message="tns:findByNameResponse"></output>
+</operation>
+</portType>
+<binding name="CountryServiceImplPortBinding" type="tns:CountryService">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"></soap:binding>
+<operation name="findByName">
+    <soap:operation soapAction=""></soap:operation>
+    <input>
+        <soap:body use="literal" namespace="http://server.soap.yilmazmertm.com/"></soap:body>
+    </input>
+    <output>
+        <soap:body use="literal" namespace="http://server.soap.yilmazmertm.com/"></soap:body>
+    </output>
+</operation>
+</binding>
+<service name="CountryServiceImplService">
+<port name="CountryServiceImplPort" binding="tns:CountryServiceImplPortBinding">
+    <soap:address location="http://localhost:8888/ws/country"></soap:address>
+</port>
+</service>
+        </definitions>
